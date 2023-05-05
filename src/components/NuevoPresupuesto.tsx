@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
     Text,
     View,
@@ -8,9 +8,13 @@ import {
 
 } from 'react-native'
 
-const NuevoPresupuesto = ({ handleNuevoPresupuesto }: any) => {
+import globalStyles from '../styles'
 
-    const [presupuesto, setPresupuesto] = useState(0)
+const NuevoPresupuesto = ({ 
+    presupuesto, 
+    setPresupuesto,
+    handleNuevoPresupuesto 
+}: any) => {
 
     return (
         <View style={styles.contenedor}>
@@ -35,20 +39,7 @@ const NuevoPresupuesto = ({ handleNuevoPresupuesto }: any) => {
 
 const styles = StyleSheet.create({
     contenedor: {
-        backgroundColor: '#FFFFFF',
-        marginHorizontal: 10,
-        borderRadius: 10,
-        paddingVertical: 40,
-        paddingHorizontal: 20,
-        transform: [{ translateY: 50 }],
-        shadowColor: "#000000",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.17,
-        shadowRadius: 3.05,
-        elevation: 4
+        ...globalStyles.contenedor
     },
     text: {
         color: '#3B82F6',
@@ -82,3 +73,5 @@ const styles = StyleSheet.create({
 });
 
 export default NuevoPresupuesto
+
+

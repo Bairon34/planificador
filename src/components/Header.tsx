@@ -15,8 +15,6 @@ const Header = () => {
 }
 
 const styles = StyleSheet.create({
-   
-
     texto:{
         textAlign: 'center',
         fontSize:30,
