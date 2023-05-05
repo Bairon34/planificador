@@ -75,8 +75,7 @@ const styles = StyleSheet.create({
     height:60,
     position:'absolute',
     top:120,
-    right: 20
-  }
+    right: 20  }
 });
 
 export default App;
