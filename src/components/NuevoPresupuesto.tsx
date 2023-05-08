@@ -25,7 +25,7 @@ const NuevoPresupuesto = ({
                 keyboardType='numeric'
                 placeholder='Agrega tu presupuesto'
                 value={presupuesto.toString()}
-                onChangeText={() => setPresupuesto}
+                onChangeText={setPresupuesto}
             />
 
             <Pressable style={styles.boton}
