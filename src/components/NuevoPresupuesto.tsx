@@ -4,16 +4,17 @@ import {
     View,
     Pressable,
     TextInput,
-    StyleSheet
+    StyleSheet,
+    ScrollView
 
 } from 'react-native'
 
 import globalStyles from '../styles'
 
-const NuevoPresupuesto = ({ 
-    presupuesto, 
+const NuevoPresupuesto = ({
+    presupuesto,
     setPresupuesto,
-    handleNuevoPresupuesto 
+    handleNuevoPresupuesto
 }: any) => {
 
     return (

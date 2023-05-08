@@ -35,30 +35,30 @@ const App = () => {
   }
 
   return (
-    <View style={styles.contenedor}>
-      <View style={styles.header}>
-        <Header />
-        {isValidPresupuesto ? (
-          <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
-        ) : (
-          <NuevoPresupuesto
-            presupuesto={presupuesto}
-            setPresupuesto={setPresupuesto}
-            handleNuevoPresupuesto={handleNuevoPresupuesto}
-          />
+      <View style={styles.contenedor}>
+        <View style={styles.header}>
+          <Header />
+          {isValidPresupuesto ? (
+            <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+          ) : (
+            <NuevoPresupuesto
+              presupuesto={presupuesto}
+              setPresupuesto={setPresupuesto}
+              handleNuevoPresupuesto={handleNuevoPresupuesto}
+            />
+          )}
+        </View>
+
+        {isValidPresupuesto && (
+          <Pressable>
+            <Image
+              style={styles.imagen}
+              source={require('./src/img/nuevo-gasto.png')}
+            />
+          </Pressable>
         )}
       </View>
 
-      {isValidPresupuesto && (
-        <Pressable>
-          <Image
-            style={styles.imagen}
-            source={require('./src/img/nuevo-gasto.png')}
-          />
-        </Pressable>
-      )}
-
-    </View>
   );
 }
 
@@ -70,12 +70,13 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#3B82F6',
   },
-  imagen:{
-    width:60,
-    height:60,
-    position:'absolute',
-    top:120,
-    right: 20  }
+  imagen: {
+    width: 60,
+    height: 60,
+    position: 'absolute',
+    top: 80,
+    right: 20
+  }
 });
 
 export default App;

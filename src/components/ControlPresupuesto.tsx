@@ -1,21 +1,26 @@
-import React, {useState,useEffect} from 'react'
-import { Text, View, Image, StyleSheet } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { 
+  Text, 
+  View, 
+  Image, 
+  StyleSheet 
+} from 'react-native'
 
 import globalStyles from '../styles'
 import { formatearCantidad } from '../helper'
 
 const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
 
-  const [disponible,setDisponible]= useState(0)
-  const [gastado,setGastado] = useState(0)
+  const [disponible, setDisponible] = useState(0)
+  const [gastado, setGastado] = useState(0)
 
-  useEffect(()=>{
-    const totalGastado = gastos.reduce((total:any, gasto:any) => Number(gasto.cantidad) + total, 0)
+  useEffect(() => {
+    const totalGastado = gastos.reduce((total: any, gasto: any) => Number(gasto.cantidad) + total, 0)
     const totalDisponible = presupuesto - totalGastado
-    
+
     setDisponible(totalDisponible)
     setGastado(totalGastado)
-  },[])
+  }, [])
 
   return (
     <View style={styles.contenedor}>
@@ -55,17 +60,19 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250
   },
-  contenedorTexto:{
-    marginTop:50,
+  contenedorTexto: {
+    marginTop: 50,
+    textAlign: "right"
   },
-  valor:{
-    fontSize:24,
-    textAlign:'center',
-    marginBottom:10
+  valor: {
+    fontSize: 24,
+    textAlign: 'center',
+    marginBottom: 10
   },
-  label:{
-    fontWeight:'700',
-    color: '#3B82F6'
+  label: {
+    fontWeight: '700',
+    color: '#3B82F6',
+    fontSize: 16,
   }
 
 });
