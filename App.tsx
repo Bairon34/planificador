@@ -58,14 +58,14 @@ const App = () => {
             visible={modal}
           >
               <FormularioGasto
-                
+
               />
 
           </Modal>
         )}
 
         {isValidPresupuesto && (
-          <Pressable onPress={() => setModal(true)}>
+          <Pressable onPressIn={()=> setModal(true)}>
             <Image
               style={styles.imagen}
               source={require('./src/img/nuevo-gasto.png')}
