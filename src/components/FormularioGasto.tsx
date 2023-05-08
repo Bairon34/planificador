@@ -12,7 +12,7 @@ import globalStyles from '../styles'
 
 import { Picker } from '@react-native-picker/picker'
 
-const FormularioGasto = ({setModal}) => {
+const FormularioGasto = ({setModal}:any) => {
     return (
         <SafeAreaView style={styles.contenedor}>
             <View >
