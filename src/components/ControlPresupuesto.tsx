@@ -8,6 +8,7 @@ import {
 
 import globalStyles from '../styles'
 import { formatearCantidad } from '../helper'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
 
@@ -65,9 +66,10 @@ const styles = StyleSheet.create({
     textAlign: "right"
   },
   valor: {
-    fontSize: 24,
+    fontSize: 16,
     textAlign: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+    color:'black',
   },
   label: {
     fontWeight: '700',

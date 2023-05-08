@@ -7,12 +7,14 @@ import {
   View,
   Alert,
   Pressable,
-  Image
+  Image,
+  Modal
 } from 'react-native';
 
 import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
+import FormularioGasto from './src/components/FormularioGasto';
 
 
 
@@ -25,6 +27,7 @@ const App = () => {
     { id: 2, cantidad: 40 },
     { id: 3, cantidad: 50 }
   ])
+  const [modal,setModal]= useState(false)
 
   const handleNuevoPresupuesto = (presupuesto: any) => {
     if (Number(presupuesto) > 0) {
@@ -49,8 +52,20 @@ const App = () => {
           )}
         </View>
 
+        {modal && (
+          <Modal 
+            animationType='slide'
+            visible={modal}
+          >
+              <FormularioGasto
+                
+              />
+
+          </Modal>
+        )}
+
         {isValidPresupuesto && (
-          <Pressable>
+          <Pressable onPress={() => setModal(true)}>
             <Image
               style={styles.imagen}
               source={require('./src/img/nuevo-gasto.png')}
