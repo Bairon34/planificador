@@ -12,12 +12,12 @@ import globalStyles from '../styles'
 
 import { Picker } from '@react-native-picker/picker'
 
-const FormularioGasto = () => {
+const FormularioGasto = ({setModal}) => {
     return (
         <SafeAreaView style={styles.contenedor}>
-            <View>
-                <Pressable>
-                    <Text>Cancelar</Text>
+            <View >
+                <Pressable style={styles.btnCancelar} onPressIn={() => setModal(false)}>
+                    <Text style={styles.btnCancelarText}>Cancelar</Text>
                 </Pressable>
             </View>
 
@@ -108,6 +108,20 @@ const styles = StyleSheet.create({
     },
     submitBtnText: {
       
+        textAlign: 'center',
+        color: '#FFF',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    },
+
+    btnCancelar: {
+        paddingHorizontal:20,
+        backgroundColor: '#DB2777',
+        padding: 10,
+        marginTop: 80,
+        borderRadius: 10,
+    },
+    btnCancelarText: {
         textAlign: 'center',
         color: '#FFF',
         fontWeight: 'bold',

@@ -27,7 +27,7 @@ const App = () => {
     { id: 2, cantidad: 40 },
     { id: 3, cantidad: 50 }
   ])
-  const [modal,setModal]= useState(false)
+  const [modal, setModal] = useState(false)
 
   const handleNuevoPresupuesto = (presupuesto: any) => {
     if (Number(presupuesto) > 0) {
@@ -38,41 +38,39 @@ const App = () => {
   }
 
   return (
-      <View style={styles.contenedor}>
-        <View style={styles.header}>
-          <Header />
-          {isValidPresupuesto ? (
-            <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
-          ) : (
-            <NuevoPresupuesto
-              presupuesto={presupuesto}
-              setPresupuesto={setPresupuesto}
-              handleNuevoPresupuesto={handleNuevoPresupuesto}
-            />
-          )}
-        </View>
-
-        {modal && (
-          <Modal 
-            animationType='slide'
-            visible={modal}
-          >
-              <FormularioGasto
-
-              />
-
-          </Modal>
-        )}
-
-        {isValidPresupuesto && (
-          <Pressable onPressIn={()=> setModal(true)}>
-            <Image
-              style={styles.imagen}
-              source={require('./src/img/nuevo-gasto.png')}
-            />
-          </Pressable>
+    <View style={styles.contenedor}>
+      <View style={styles.header}>
+        <Header />
+        {isValidPresupuesto ? (
+          <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+        ) : (
+          <NuevoPresupuesto
+            presupuesto={presupuesto}
+            setPresupuesto={setPresupuesto}
+            handleNuevoPresupuesto={handleNuevoPresupuesto}
+          />
         )}
       </View>
+
+      {modal && (
+        <Modal
+          animationType='slide'
+          visible={modal}
+          onRequestClose={() => { setModal(!modal)}}
+        >
+          <FormularioGasto setModal={setModal}/>
+        </Modal>
+      )}
+
+      {isValidPresupuesto && (
+        <Pressable onPressIn={() => setModal(true)}>
+          <Image
+            style={styles.imagen}
+            source={require('./src/img/nuevo-gasto.png')}
+          />
+        </Pressable>
+      )}
+    </View>
 
   );
 }
