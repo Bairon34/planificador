@@ -15,8 +15,7 @@ import Header from './src/components/Header';
 import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
-
-
+import { generarId } from './src/helper'; 
 
 const App = () => {
 
@@ -28,6 +27,7 @@ const App = () => {
     { id: 3, cantidad: 50 }
   ])
   const [modal, setModal] = useState(false)
+  
 
   const handleNuevoPresupuesto = (presupuesto: any) => {
     if (Number(presupuesto) > 0) {
@@ -37,12 +37,25 @@ const App = () => {
     }
   }
 
+  const handleGasto= (gasto: any) => {
+    if(!Object.values(gasto).includes('')){
+      gasto.id =  generarId()
+      setGastos([...gastos,gasto])
+      setModal(!modal)
+    }else{
+      Alert.alert('Warning', 'Complete el formulario');
+    }
+  }
+
   return (
     <View style={styles.contenedor}>
       <View style={styles.header}>
         <Header />
         {isValidPresupuesto ? (
-          <ControlPresupuesto presupuesto={presupuesto} gastos={gastos} />
+            <ControlPresupuesto 
+              presupuesto={presupuesto} 
+              gastos={gastos} 
+            />
         ) : (
           <NuevoPresupuesto
             presupuesto={presupuesto}
@@ -58,7 +71,10 @@ const App = () => {
           visible={modal}
           onRequestClose={() => { setModal(!modal)}}
         >
-          <FormularioGasto setModal={setModal}/>
+          <FormularioGasto 
+            setModal={setModal}
+            handleGasto={handleGasto} 
+          />
         </Modal>
       )}
 
@@ -89,7 +105,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 80,
     right: 20
-  }
+  },
+  label: {
+    color: '#64748B',
+    textTransform: 'uppercase',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: 10
+},
 });
 
 export default App;
