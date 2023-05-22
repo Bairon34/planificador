@@ -16,16 +16,13 @@ import NuevoPresupuesto from './src/components/NuevoPresupuesto';
 import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helper'; 
+import ListadoGastos from './src/components/ListadoGastos';
 
 const App = () => {
 
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
   const [presupuesto, setPresupuesto] = useState(0)
-  const [gastos, setGastos] = useState([
-    { id: 1, cantidad: 30 },
-    { id: 2, cantidad: 40 },
-    { id: 3, cantidad: 50 }
-  ])
+  const [gastos, setGastos] = useState([])
   const [modal, setModal] = useState(false)
   
 
@@ -65,6 +62,12 @@ const App = () => {
         )}
       </View>
 
+      {isValidPresupuesto && (
+        <ListadoGastos
+          gastos={gastos}
+        />
+      )}
+
       {modal && (
         <Modal
           animationType='slide'
@@ -103,7 +106,6 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     position: 'absolute',
-    top: 80,
     right: 20
   },
   label: {
