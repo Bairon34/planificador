@@ -85,9 +85,10 @@ const styles = StyleSheet.create({
         marginBottom:5
     },
     fecha: {
-        color: '#64748B',
-        fontSize:14,
-        marginBottom:5
+        color: '#DB2777',
+        fontSize:12,
+        fontWeight:'700'
+
     },
     cantidad:{
         color: '#64748B',
