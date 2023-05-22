@@ -5,11 +5,16 @@ import {
     Text
 } from 'react-native'
 
+import globalStyles from '../styles'
+
 const Gasto = ({ gasto }: any) => {
+
+    const {nombre,categoria,cantidad, id}=gasto
+
     return (
-        <View>
+        <View style={styles.contenedor}>
             {
-                <Text style={styles.textGasto} >{gasto.nombre}</Text>
+                <Text style={styles.textGasto} >{nombre}</Text>
             }
         </View>
 
@@ -20,6 +25,11 @@ const styles = StyleSheet.create({
     textGasto: {
         color: 'black',
     },
+    contenedor:{
+        ...globalStyles.contenedor,
+        marginBottom:10
+    }
+
 })
 
 
