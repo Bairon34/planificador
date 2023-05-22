@@ -10,3 +10,14 @@ export const generarId =() =>{
     const fecha = Date.now().toString(36)
     return random + fecha
 }
+
+export const formatDate  =(date :any) =>{
+    const newDate = new Date(date)
+    const opcion = {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+    }
+    return newDate.toLocaleDateString('es-ES',opcion)
+}
+

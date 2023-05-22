@@ -37,6 +37,7 @@ const App = () => {
   const handleGasto = (gasto: any) => {
     if (!Object.values(gasto).includes('')) {
       gasto.id = generarId()
+      gasto.fecha = Date.now()
       setGastos([...gastos, gasto])
       setModal(!modal)
     } else {
