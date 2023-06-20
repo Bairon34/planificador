@@ -89,7 +89,9 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
                     style={styles.submitBtn}
                     onPress={()=> handleGasto({nombre,cantidad,categoria})}
                 >
-                    <Text style={styles.submitBtnText} >Agregar Gasto</Text>
+                    <Text style={styles.submitBtnText} >
+                        {gasto?.nombre ? "Guardar Cambios Gasto" : "Agregar Gasto"}
+                    </Text>
                 </Pressable>
             </View>
 
