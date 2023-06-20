@@ -8,7 +8,7 @@ import {
 
 import Gasto from './Gasto'
 
-const ListadoGastos = ({ gastos }: any) => {
+const ListadoGastos = ({ gastos,setModal,setGasto }: any) => {
     console.log("gastos objetc " + gastos)
     return (
         <View style={styles.contenedor}>
@@ -20,6 +20,8 @@ const ListadoGastos = ({ gastos }: any) => {
                     <Gasto
                         key={gasto.id}
                         gasto={gasto}
+                        setModal={setModal}
+                        setGasto={setGasto}
                     />
                 )
                 )}

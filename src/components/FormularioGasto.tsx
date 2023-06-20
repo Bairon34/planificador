@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
     Text,
     SafeAreaView,
@@ -12,17 +12,29 @@ import globalStyles from '../styles'
 
 import { Picker } from '@react-native-picker/picker'
 
-const FormularioGasto = ({ setModal, handleGasto }: any) => {
+const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
 
     const [nombre, setNombre] = useState("")
     const [cantidad, setCantidad] = useState("")
     const [categoria, setCategoria] = useState("")
 
+    const handleAccion=()=>{
+        setModal(false)
+        setGasto({})
+    }
+
+    useEffect(()=>{
+        if(gasto?.nombre){
+            setNombre(gasto.nombre)
+            setCantidad(gasto.cantidad)
+            setCategoria(gasto.categoria)
+        }
+    },[gasto])
 
     return (
         <SafeAreaView style={styles.contenedor}>
             <View >
-                <Pressable style={styles.btnCancelar} onPressIn={() => setModal(false)}>
+                <Pressable style={styles.btnCancelar} onPressIn={handleAccion}>
                     <Text style={styles.btnCancelarText}>Cancelar</Text>
                 </Pressable>
             </View>
@@ -38,6 +50,8 @@ const FormularioGasto = ({ setModal, handleGasto }: any) => {
                         style={styles.input}
                         placeholder='Nombre del gasto'
                         placeholderTextColor={'#A5A5A5'}
+                        
+                    
                     />
                 </View>
 

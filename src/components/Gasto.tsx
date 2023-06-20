@@ -3,11 +3,12 @@ import {
     Image,
     StyleSheet,
     View,
-    Text
+    Text,
+    Pressable
 } from 'react-native'
 
 import globalStyles from '../styles'
-import { formatearCantidad,formatDate } from '../helper'
+import { formatearCantidad, formatDate } from '../helper'
 
 
 
@@ -21,33 +22,40 @@ const diccionarioIconos = {
     suscripciones: require('../img/icono_suscripciones.png'),
 }
 
-const Gasto = ({ gasto }: any) => {
+const Gasto = ({ gasto, setModal, setGasto }: any) => {
 
     const { nombre, categoria, cantidad, id, fecha } = gasto
+    
+    const handleAcciones =()=>{
+        setModal(true)
+        setGasto(gasto)
+    } 
+
 
     return (
-        <View style={styles.contenedor}>
-            <View style={styles.contenido}>
+        <Pressable 
+            onLongPress={handleAcciones}
+        >
+             <View style={styles.contenedor}>
+                <View style={styles.contenido}>
 
-                <View style={styles.contenedorImagen}>
-                    <Image
-                        style={styles.imagen}
-                        source={diccionarioIconos[categoria]}
-                    />
-                    <View  style={styles.contenedorTexto} >
-                        <Text style={styles.categoria} >{categoria}</Text>
-                        <Text style={styles.nombre} >{nombre}</Text>
-                        <Text style={styles.fecha} >Fecha: {formatDate(fecha) }</Text>
+                    <View style={styles.contenedorImagen}>
+                        <Image
+                            style={styles.imagen}
+                            source={diccionarioIconos[categoria]}
+                        />
+                        <View style={styles.contenedorTexto} >
+                            <Text style={styles.categoria} >{categoria}</Text>
+                            <Text style={styles.nombre} >{nombre}</Text>
+                            <Text style={styles.fecha} >Fecha: {formatDate(fecha)}</Text>
 
+                        </View>
                     </View>
+                    <Text style={styles.cantidad} >{formatearCantidad(cantidad)}</Text>
                 </View>
-                <Text style={styles.cantidad} >{formatearCantidad(cantidad)}</Text>
             </View>
-
-
-
-        </View>
-
+        </Pressable>
+           
     )
 }
 
@@ -56,23 +64,23 @@ const styles = StyleSheet.create({
         ...globalStyles.contenedor,
         marginBottom: 10
     },
-  
+
     contenido: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'
     },
 
-    contenedorImagen :{
-        flexDirection:'row',
+    contenedorImagen: {
+        flexDirection: 'row',
         alignItems: 'center',
-        flex:1
-        
+        flex: 1
+
     },
-    contenedorTexto:{
-        flex:1
+    contenedorTexto: {
+        flex: 1
     },
-    categoria:{
+    categoria: {
         color: '#94A3B8',
         fontSize: 16,
         fontweight: '700',
@@ -81,24 +89,24 @@ const styles = StyleSheet.create({
     },
     nombre: {
         color: '#64748B',
-        fontSize:22,
-        marginBottom:5
+        fontSize: 22,
+        marginBottom: 5
     },
     fecha: {
         color: '#DB2777',
-        fontSize:12,
-        fontWeight:'700'
+        fontSize: 12,
+        fontWeight: '700'
 
     },
-    cantidad:{
+    cantidad: {
         color: '#64748B',
-        fontSize:24,
+        fontSize: 24,
         fontWeight: '700',
     },
     imagen: {
-        width:80,
-        height:80,
-        marginRight:20
+        width: 80,
+        height: 80,
+        marginRight: 20
     },
 
 })

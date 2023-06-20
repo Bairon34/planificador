@@ -24,6 +24,7 @@ const App = () => {
   const [presupuesto, setPresupuesto] = useState(0)
   const [gastos, setGastos] = useState([])
   const [modal, setModal] = useState(false)
+  const [gasto, setGasto] = useState([])
 
 
   const handleNuevoPresupuesto = (presupuesto: any) => {
@@ -39,9 +40,10 @@ const App = () => {
       gasto.id = generarId()
       gasto.fecha = Date.now()
       setGastos([...gastos, gasto])
-      setModal(!modal)
+      setModal(false)
     } else {
-      Alert.alert('Warning', 'Complete el formulario');
+      Alert.alert('Warning', 'Complete el formulario.');
+      
     }
   }
 
@@ -67,6 +69,8 @@ const App = () => {
         {isValidPresupuesto && (
           <ListadoGastos
             gastos={gastos}
+            setModal={setModal}
+            setGasto={setGasto}
           />
         )}
       </ScrollView>
@@ -81,6 +85,8 @@ const App = () => {
           <FormularioGasto
             setModal={setModal}
             handleGasto={handleGasto}
+            setGasto={setGasto}
+            gasto={gasto}
           />
         </Modal>
       )}
