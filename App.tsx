@@ -27,6 +27,11 @@ const App = () => {
   const [gasto, setGasto] = useState([])
 
 
+  const handleAccion = () => {
+    setModal(true)
+    setGasto({})
+  }
+
   const handleNuevoPresupuesto = (presupuesto: any) => {
     if (Number(presupuesto) > 0) {
       setIsValidPresupuesto(true)
@@ -34,17 +39,25 @@ const App = () => {
       Alert.alert('Error', 'El valor no puede ser 0');
     }
   }
+   
 
   const handleGasto = (gasto: any) => {
-    if (!Object.values(gasto).includes('')) {
+    if ([gasto.nombre, gasto.categoria, gasto.cantidad].includes('')) {
+      Alert.alert('Warning', 'Complete el formulario.');
+      return
+    }
+    
+    if(gasto.id){
+      const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto : gastoState)
+      setGastos(gastosActualizados)
+    }else{
       gasto.id = generarId()
       gasto.fecha = Date.now()
       setGastos([...gastos, gasto])
-      setModal(false)
-    } else {
-      Alert.alert('Warning', 'Complete el formulario.');
-      
     }
+
+    setModal(false)
+    
   }
 
   return (
@@ -92,7 +105,7 @@ const App = () => {
       )}
 
       {isValidPresupuesto && (
-        <Pressable onPressIn={() => setModal(true)}>
+        <Pressable onPressIn={handleAccion}>
           <Image
             style={styles.imagen}
             source={require('./src/img/nuevo-gasto.png')}

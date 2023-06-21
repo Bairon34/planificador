@@ -17,6 +17,8 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
     const [nombre, setNombre] = useState("")
     const [cantidad, setCantidad] = useState("")
     const [categoria, setCategoria] = useState("")
+    const [id, setId] = useState("")
+    const [fecha, setFecha] = useState("")
 
     const handleAccion=()=>{
         setModal(false)
@@ -28,6 +30,8 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
             setNombre(gasto.nombre)
             setCantidad(gasto.cantidad)
             setCategoria(gasto.categoria)
+            setId(gasto.id)
+            setFecha(gasto.fecha)
         }
     },[gasto])
 
@@ -87,7 +91,7 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
 
                 <Pressable 
                     style={styles.submitBtn}
-                    onPress={()=> handleGasto({nombre,cantidad,categoria})}
+                    onPress={()=> handleGasto({nombre,cantidad,categoria,id,fecha})}
                 >
                     <Text style={styles.submitBtnText} >
                         {gasto?.nombre ? "Guardar Cambios Gasto" : "Agregar Gasto"}
