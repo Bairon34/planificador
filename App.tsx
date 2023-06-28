@@ -126,7 +126,10 @@ const App = () => {
       )}
 
       {isValidPresupuesto && (
-        <Pressable onPressIn={handleAccion}>
+        <Pressable 
+          style={styles.presable}
+          onPressIn={handleAccion}
+        >
           <Image
             style={styles.imagen}
             source={require('./src/img/nuevo-gasto.png')}
@@ -139,6 +142,13 @@ const App = () => {
 }
 
 const styles = StyleSheet.create({
+  presable:{
+    width: 60,
+    height: 60,
+    position:'absolute',
+    bottom: 40,
+    right: 30
+  },
   contenedor: {
     backgroundColor: '#F5F5F5',
     flex: 1,
@@ -150,9 +160,6 @@ const styles = StyleSheet.create({
   imagen: {
     width: 60,
     height: 60,
-    position: 'absolute',
-    bottom:10,
-    right: 20,
   },
   label: {
     color: '#64748B',
