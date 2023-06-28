@@ -17,6 +17,7 @@ import ControlPresupuesto from './src/components/ControlPresupuesto';
 import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helper';
 import ListadoGastos from './src/components/ListadoGastos';
+import Filtro from './src/components/Filtro';
 
 const App = () => {
 
@@ -100,11 +101,16 @@ const App = () => {
         </View>
 
         {isValidPresupuesto && (
-          <ListadoGastos
-            gastos={gastos}
-            setModal={setModal}
-            setGasto={setGasto}
-          />
+          <>
+            <Filtro
+            />
+            <ListadoGastos
+              gastos={gastos}
+              setModal={setModal}
+              setGasto={setGasto}
+            />
+          </>
+          
         )}
       </ScrollView>
 
