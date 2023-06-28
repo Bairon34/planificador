@@ -60,6 +60,26 @@ const App = () => {
     
   }
 
+  const eliminarGasto = (id:any)=>{
+    Alert.alert(
+      'Deseas eliminar', 
+      'dato eliminado no se puede recuperar.',
+      [
+        {text: 'No', style : 'cancel' },
+        {text: 'Si Eliminar', style : 'default', onPress:()=>{
+
+          const gastosActualizados = gastos.filter(gastoState =>
+            gastoState.id!== id
+          )
+          setGastos(gastosActualizados)
+          setModal(false)
+          setGasto({})
+        }}
+      ]
+    );
+    
+  }
+
   return (
     <View style={styles.contenedor}>
       <ScrollView>
@@ -100,6 +120,7 @@ const App = () => {
             handleGasto={handleGasto}
             setGasto={setGasto}
             gasto={gasto}
+            eliminarGasto={eliminarGasto}
           />
         </Modal>
       )}

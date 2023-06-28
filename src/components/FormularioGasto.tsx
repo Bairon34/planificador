@@ -12,7 +12,7 @@ import globalStyles from '../styles'
 
 import { Picker } from '@react-native-picker/picker'
 
-const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
+const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto,eliminarGasto }: any) => {
 
     const [nombre, setNombre] = useState("")
     const [cantidad, setCantidad] = useState("")
@@ -37,9 +37,13 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
 
     return (
         <SafeAreaView style={styles.contenedor}>
-            <View >
-                <Pressable style={styles.btnCancelar} onPressIn={handleAccion}>
-                    <Text style={styles.btnCancelarText}>Cancelar</Text>
+            <View style={styles.contenedorBotones} >
+                <Pressable style={[styles.btn,styles.btnCancelar]} onPressIn={handleAccion}>
+                    <Text style={styles.btnText}>Cancelar</Text>
+                </Pressable>
+
+                <Pressable style={[styles.btn,styles.btnEliminar]} onLongPress={()=>eliminarGasto(id)}>
+                    <Text style={styles.btnText}>Eliminar</Text>
                 </Pressable>
             </View>
 
@@ -104,6 +108,21 @@ const FormularioGasto = ({ setModal, handleGasto,setGasto,gasto }: any) => {
 }
 
 const styles = StyleSheet.create({
+    contenedorBotones:{
+        flexDirection : 'row',
+        justifyContent :'space-between',
+    },
+    btn:{
+        padding: 10,
+        marginTop: 30,
+        marginHorizontal: 10,
+        flex:1
+    },
+
+    btnEliminar:{
+        backgroundColor: 'red',
+    },
+
     contenedor: {
         backgroundColor: "1E40AF",
 
@@ -150,13 +169,9 @@ const styles = StyleSheet.create({
     },
 
     btnCancelar: {
-        paddingHorizontal: 20,
         backgroundColor: '#DB2777',
-        padding: 10,
-        marginTop: 80,
-        borderRadius: 10,
     },
-    btnCancelarText: {
+    btnText: {
         textAlign: 'center',
         color: '#FFF',
         fontWeight: 'bold',
