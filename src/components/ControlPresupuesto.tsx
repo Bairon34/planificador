@@ -29,6 +29,16 @@ const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
       <View style={styles.centrarGrafica}>
         <CircularProgress
           value={50}
+          radius={150}
+          valueSuffix={'%'}
+          title='Gastado'
+          inActiveStrokeColor='#F5F5F5'
+          inActiveStrokeOpacity={20}
+          activeStrokeColor='#3B82F6'
+          activeStrokeWidth={20}
+          titleStyle={{fontWeight:'bold',fontSize:20}}
+          titleColor='#64748B'
+          duration={1500}
         />
       </View>
 
