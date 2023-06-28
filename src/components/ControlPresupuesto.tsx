@@ -15,30 +15,34 @@ const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
 
   const [disponible, setDisponible] = useState(0)
   const [gastado, setGastado] = useState(0)
+  const [porcentaje,setPorcentaje]= useState(0)
 
   useEffect(() => {
     const totalGastado = gastos.reduce((total: any, gasto: any) => Number(gasto.cantidad) + total, 0)
     const totalDisponible = presupuesto - totalGastado
 
     setDisponible(totalDisponible)
-    setGastado(totalGastado)
+    setGastado(totalGastado)  
+    setPorcentaje(((presupuesto - totalDisponible)/presupuesto)*100)
+
   }, [gastos])
 
   return (
     <View style={styles.contenedor}>
       <View style={styles.centrarGrafica}>
         <CircularProgress
-          value={50}
+          value={porcentaje}
           radius={150}
           valueSuffix={'%'}
           title='Gastado'
           inActiveStrokeColor='#F5F5F5'
           inActiveStrokeOpacity={20}
           activeStrokeColor='#3B82F6'
-          activeStrokeWidth={20}
+          activeStrokeWidth={30}
+          inActiveStrokeWidth={20}
           titleStyle={{fontWeight:'bold',fontSize:20}}
           titleColor='#64748B'
-          duration={1500}
+          duration={1000}
         />
       </View>
 
