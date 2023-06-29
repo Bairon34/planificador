@@ -40,7 +40,7 @@ const App = () => {
         {text: 'Si Eliminar', onPress:()=>{
         
           try {
-            await AsyncStorage.clear()
+            //await AsyncStorage.clear()
             setIsValidPresupuesto(false)
             setPresupuesto(0)
             setGastos([])
