@@ -38,6 +38,29 @@ const App = () => {
   }
 
   useEffect(() => {
+    const obtenerGastosStorage = async () => {
+      try {
+        const gastosStorage = await AsyncStorage.getItem('planificador_gastos') ?? []
+            setGastos(gastosStorage ? JSON.parse(gastosStorage) : []) 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    obtenerGastosStorage()
+  },[])
+
+  useEffect(() => {
+    const guardarGastosStarage = async () => {
+        try {
+           await AsyncStorage.setItem('planificador_gastos', JSON.stringify(gastos))
+        } catch (error) {
+          console.log(error)
+        }
+    }
+    guardarGastosStarage()
+  },[gastos])
+
+  useEffect(() => {
     const obtenerPresupuestoStorage = async () => {
       try {
         const presupuestoStorage = await AsyncStorage.getItem('planificador_presupuesto') ??0
@@ -51,6 +74,7 @@ const App = () => {
         console.log(error)
       }
     }
+    obtenerPresupuestoStorage()
   },[])
 
   useEffect(()=>{
@@ -62,6 +86,7 @@ const App = () => {
           console.log(error)
         }
       }
+      guardarPrsupuestoStorage()
     }
   },[isValidPresupuesto])
 
