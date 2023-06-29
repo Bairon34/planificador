@@ -31,6 +31,27 @@ const App = () => {
   const [gastosFiltrados, setGastosFiltrados] = useState([])
 
 
+  const resetApp = () => {
+    Alert.alert(
+      'Deseas resertear', 
+      'dato eliminado no se puede recuperar.',
+      [
+        {text: 'No', style : 'cancel' },
+        {text: 'Si Eliminar', onPress:()=>{
+        
+          try {
+            await AsyncStorage.clear()
+            setIsValidPresupuesto(false)
+            setPresupuesto(0)
+            setGastos([])
+          } catch (error) {
+            console.log(error)
+          }
+          
+        }}
+      ]
+    );
+  }
 
   const handleAccion = () => {
     setModal(true)
@@ -149,6 +170,7 @@ const App = () => {
             <ControlPresupuesto
               presupuesto={presupuesto}
               gastos={gastos}
+              resetApp={resetApp}
             />
           ) : (
             <NuevoPresupuesto

@@ -3,7 +3,8 @@ import {
   Text, 
   View, 
   Image, 
-  StyleSheet 
+  StyleSheet,
+  Pressable 
 } from 'react-native'
 
 import globalStyles from '../styles'
@@ -11,7 +12,7 @@ import { formatearCantidad } from '../helper'
 import { Colors } from 'react-native/Libraries/NewAppScreen'
 import CircularProgress from 'react-native-circular-progress-indicator'
 
-const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
+const ControlPresupuesto = ({ presupuesto, gastos,resetApp }: any) => {
 
   const [disponible, setDisponible] = useState(0)
   const [gastado, setGastado] = useState(0)
@@ -47,6 +48,14 @@ const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
       </View>
 
       <View style={styles.contenedorTexto}>
+
+        <Pressable 
+          onLongPress={resetApp}
+          style={styles.boton}
+        >
+          <Text style={styles.textBoton}>Reiniciar app</Text>
+        </Pressable>
+
         <Text style={styles.valor}>
           <Text style={styles.label}>Presupuesto: {' '}</Text>
           {formatearCantidad(presupuesto)}
@@ -68,15 +77,23 @@ const ControlPresupuesto = ({ presupuesto, gastos }: any) => {
 }
 
 const styles = StyleSheet.create({
+  textBoton:{
+    textAlign : 'center',
+    color : '#FFF',
+    fontWeight : 'bold',
+    textTransform : 'uppercase',
+  },
+  boton: {
+    backgroundColor : '#DB2777',
+    padding : 10,
+    marginBottom: 40,
+    borderRadius : 5
+  },
   contenedor: {
     ...globalStyles.contenedor
   },
   centrarGrafica: {
     alignItems: 'center',
-  },
-  imagen: {
-    width: 250,
-    height: 250
   },
   contenedorTexto: {
     marginTop: 50,
