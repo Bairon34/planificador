@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +18,7 @@ import FormularioGasto from './src/components/FormularioGasto';
 import { generarId } from './src/helper';
 import ListadoGastos from './src/components/ListadoGastos';
 import Filtro from './src/components/Filtro';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const App = () => {
 
@@ -29,10 +30,40 @@ const App = () => {
   const [filtro, setFiltro] = useState('')
   const [gastosFiltrados, setGastosFiltrados] = useState([])
 
+
+
   const handleAccion = () => {
     setModal(true)
     setGasto({})
   }
+
+  useEffect(() => {
+    const obtenerPresupuestoStorage = async () => {
+      try {
+        const presupuestoStorage = await AsyncStorage.getItem('planificador_presupuesto') ??0
+
+        if (presupuestoStorage) {
+          setPresupuesto(parseInt(presupuestoStorage))
+          setIsValidPresupuesto(true)
+        }
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },[])
+
+  useEffect(()=>{
+    if(isValidPresupuesto){
+      const guardarPrsupuestoStorage =async () => {
+        try {
+          await AsyncStorage.setItem('planificador_presupuesto', presupuesto)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+  },[isValidPresupuesto])
 
   const handleNuevoPresupuesto = (presupuesto: any) => {
     if (Number(presupuesto) > 0) {
@@ -81,6 +112,8 @@ const App = () => {
     );
     
   }
+
+
 
   return (
     <View style={styles.contenedor}>

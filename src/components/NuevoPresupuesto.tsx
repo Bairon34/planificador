@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {
     Text,
     View,
@@ -11,12 +11,12 @@ import {
 
 import globalStyles from '../styles'
 
+
 const NuevoPresupuesto = ({
     presupuesto,
     setPresupuesto,
     handleNuevoPresupuesto
 }: any) => {
-
     return (
         <View style={styles.contenedor}>
             <Text style={styles.text} >Definir presupuesto</Text>
